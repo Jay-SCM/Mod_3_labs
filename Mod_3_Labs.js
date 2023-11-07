@@ -990,6 +990,26 @@
 //     clearInterval(intID);// Stop the printing after 10 seconds
 // }, 2345756);
 
+//
+// function DO_Fib(limit) {
+//     let a = 1;
+//     let b = 1;
+//     console.log(a);
+//     let count = 1;
+//     const intID = setInterval(() => {
+//         const next = a + b;
+//         console.log(next);
+//         a = b;
+//         b = next;
+//         count++; // Increment the count
+//         if (limit && count >= limit) {
+//             clearInterval(intID);} // Stop after reaching the limit
+//     }, 1000);
+//     return intID;}
+// const intID = DO_Fib(10); // Print the first 10 Fibonacci numbers
+// setTimeout(() => {
+// clearInterval(intID);}, 10000);
+
 // 5.) The following car object has several properties and a method which uses them to print a
 // description. When calling the function normally this works as expected, but using it from
 // within setTimeout fails. Why?
@@ -1203,24 +1223,17 @@
 //             this.stop();}
 //     }
 // }
+
+
+
+
+
+
+
+
 // // 9.) We can delay execution of a function using setTimeout, where we need to provide both
 // // the callback function and the delay after which it should execute.
-//
-// function randomDelay() {
-//     const delay = Math.floor(Math.random() * 20000) + 1000; // Random delay between 1 and 20 seconds
-//     return new Promise((resolve, reject) => {
-//         setTimeout(() => {
-//             if (delay % 2 === 0) {
-//                 resolve(`Successful delay of ${delay} ms.`);
-//             } else {
-//                 reject(`Failed delay of ${delay} ms.`);}
-//         }, delay);
-//     });
-// }
-// randomDelay()
-//     .then((message) => console.log(message))
-//     .catch((error) => console.error(error));
-//
+
 // // a) Create a promise-based alternative randomDelay() that delays execution for a
 // // random amount of time (between 1 and 20 seconds) and returns a promise we can use
 // // via .then(), as in the starter code below
@@ -1228,10 +1241,93 @@
 // // and if the random number is odd, consider this a failure and reject it
 // // c) Update the testing code to catch rejected promises and print a different message
 // // d) Try to update the then and catch messages to include the random delay value
-// // function randomDelay() {
-// // // your code
-// // }
-// // randomDelay().then(() => console.log('There appears to have been a delay.'));
+
+
+
+
+//9a)
+function randomDelay() {
+    const delay = Math.floor(Math.random() * 20000) + 1000; // Random delay between 1 and 20 seconds
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            resolve('There appears to have been a delay.');
+        }, delay);
+    });
+}
+
+randomDelay().then((message) => console.log(message));
+
+
+
+//9b)
+
+function randomDelay() {
+    const delay = Math.floor(Math.random() * 20000) + 1000; // Random delay between 1 and 20 seconds
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            if (delay % 2 === 0) {
+                resolve('Successful delay');
+            } else {
+                reject('Failed delay');
+            }
+        }, delay);
+    });
+}
+
+randomDelay()
+    .then((message) => console.log(message))
+    .catch((error) => console.error(error));
+
+
+
+
+//9c)
+function randomDelay() {
+    const delay = Math.floor(Math.random() * 20000) + 1000; // Random delay between 1 and 20 seconds
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            if (delay % 2 === 0) {
+                resolve('Successful delay');
+            } else {
+                reject('Failed delay');
+            }
+        }, delay);
+    });
+}
+
+randomDelay()
+    .then((message) => console.log(message))
+    .catch((error) => console.error('Error:', error)); // Updated catch block message for rejected promises
+
+
+
+
+//9d)
+function randomDelay() {
+    const delay = Math.floor(Math.random() * 20000) + 1000; // Random delay between 1 and 20 seconds
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            if (delay % 2 === 0) {
+                resolve(Successful delay of ${delay} ms);
+            } else {
+                reject(Failed delay of ${delay} ms);
+            }
+        }, delay);
+    });
+}
+
+randomDelay()
+    .then((message) => console.log(message))
+    .catch((error) => console.error('Error:', error)); // Updated catch block message for rejected promises
+
+
+
+
+
+
+
+
+
 
 
 // 10.) Fetch is a browser-based function to send a request and receive a response from a server,
